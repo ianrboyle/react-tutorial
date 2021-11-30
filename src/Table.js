@@ -17,22 +17,39 @@ const TableBody = (props) => {
       <tr key={index}>
         <td>{row.name}</td>
         <td>{row.job}</td>
+        <td>
+          <button onClick={() => props.removeCharacter(index)}>Delete</button>
+        </td>
       </tr>
     );
   });
 
   return <tbody>{rows}</tbody>;
 };
-class Table extends Component {
-  render() {
-    const { characterData } = this.props;
-    return (
-      <table>
-        <TableHeader />
-        <TableBody characterData={characterData} />
-      </table>
-    );
-  }
-}
+
+const Table = (props) => {
+  const { characterData, removeCharacter } = props;
+
+  return (
+    <table>
+      <TableHeader />
+      <TableBody characterData={characterData} removeCharacter={removeCharacter} />
+    </table>
+  );
+};
+
+//the above const Table replaces the below class Table
+
+// class Table extends Component {
+//   render() {
+//     const { characterData } = this.props;
+//     return (
+//       <table>
+//         <TableHeader />
+//         <TableBody characterData={characterData} />
+//       </table>
+//     );
+//   }
+// }
 
 export default Table;
